@@ -1,0 +1,7 @@
+##############################################################################
+# Aliases that can be shared between BASH and ZSH
+
+# Global git aliases
+alias g='git'
+alias gs='git status'
+alias gsa='git add .'
