@@ -53,7 +53,7 @@ profile_update() {
 ##############################################################################
 # SSH
 
-if [ -f ~/.ssh/rsa_id ]; then
+if [ -f "$HOME/.ssh/id_rsa" ]; then
   export SSH_KEY_PATH="~/.ssh/rsa_id"
 else
   echo 'SSH keys not imported'
@@ -61,7 +61,7 @@ fi
 
 which keychain > /dev/null
 if [ $? -eq 0 ]; then
-  eval `keychain --eval --agents ssh id_rsa`
+  eval `keychain -q --eval --agents ssh id_rsa`
 else
   echo 'keychain not installed!'
 fi
@@ -71,6 +71,8 @@ fi
 
 which git > /dev/null
 if [ $? -eq 0 ]; then
+  git config --global user.name "Eddy Luten"
+  git config --global user.email "eddyluten@gmail.com"
   git config --global core.editor vim
   git config --global color.ui true
   git config --global format.pretty "%Cred%h%C(white) - %Cblue%an: %C(white)%s %Cgreen(%cr)%Creset"
@@ -85,4 +87,14 @@ if [ $? -eq 0 ]; then
   git config --global alias.push-branch '!(git rev-parse --abbrev-ref HEAD | xargs -J % git push --set-upstream origin %)'
 else
   echo 'git not installed!'
+fi
+
+##############################################################################
+# NVM
+
+export NVM_DIR="$HOME/.nvm"
+if [ -s /usr/local/opt/nvm/nvm.sh ]; then
+  . "/usr/local/opt/nvm/nvm.sh"
+elif [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
 fi
