@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ##############################################################################
 # ZSH config
 # Path to your oh-my-zsh installation.
@@ -39,6 +41,10 @@ if [ $? -ne 0 ]; then
   else
     export EDITOR='vim'
 fi
+
+###############################################################################
+# Emacs Magic
+export ALTERNATE_EDITOR='emacs'
 
 ##############################################################################
 # Profile editing foo
@@ -89,6 +95,22 @@ else
   echo 'git not installed!'
 fi
 
+###############################################################################
+# SVN
+
+which svn > /dev/null
+if [ $? -eq 0 ]; then
+  # equivalent-esque of 'git add .'
+  svn-apply() {
+    echo '-- add new'
+    svn st | grep ^? | sed 's/?    //' | xargs svn add
+    echo '-- rm old'
+    svn st | grep ^! | sed 's/!    //' | xargs svn rm
+    echo '-- status'
+    svn st
+  }
+fi
+
 ##############################################################################
 # NVM
 
@@ -97,4 +119,12 @@ if [ -s /usr/local/opt/nvm/nvm.sh ]; then
   . "/usr/local/opt/nvm/nvm.sh"
 elif [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
+fi
+
+###############################################################################
+# PHP 5.6
+
+PHPDIR='/usr/local/opt/php@5.6'
+if [ -d "$PHPDIR/bin" -a -d "$PHPDIR/sbin" ]; then
+  export PATH="$PHPDIR/bin:$PHPDIR/sbin:$PATH"
 fi

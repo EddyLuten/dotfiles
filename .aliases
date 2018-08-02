@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ##############################################################################
 # Aliases that can be shared between BASH and ZSH
 
@@ -5,3 +7,5 @@
 alias g='git'
 alias gs='git status'
 alias gsa='git add .'
+alias v='vim'
+alias e='emacsclient'
