@@ -31,6 +31,8 @@
 (defvar my-packages
   '(org
     org-bullets
+    move-text    
+    helm
     wc-mode
     olivetti
     exec-path-from-shell
@@ -115,6 +117,32 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Global Shortcuts
+;;
+(global-set-key (kbd "C-c C-e") 'eval-buffer)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Helm
+;;
+(require 'helm)
+(require 'helm-config)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r b") 'helm-bookmarks)
+(global-set-key (kbd "C-x m") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Misc. Package Config
+;;
+(move-text-default-bindings)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; put the backups in the ~/saves directory instead
 ;;
 (setq backup-directory-alist `(("." . "~/saves")))
@@ -137,7 +165,7 @@
 ;; Fullscreen
 ;; Emulate the TTY as much as possible, no GUI stuff.
 ;;
-(toggle-frame-fullscreen)
+;; (toggle-frame-fullscreen)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
