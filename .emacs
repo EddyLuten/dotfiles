@@ -153,11 +153,7 @@
 ;; UI
 ;;
 ;; I like this font on mac
-(if (eq system-type 'darwin)
-    (set-face-attribute 'default nil :font "PT Mono-18" ))
-(if (eq system-type 'gnu/linux)
-    (set-face-attribute 'default nil :font "Latin Modern Mono-14"))
-;; I don't want to use the Command key on mac, map it to Meta
+(set-face-attribute 'default nil :font "PT Mono-14")
 (setq mac-command-modifier 'meta)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
