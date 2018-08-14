@@ -20,7 +20,7 @@
 ;; Set up additional package repositories
 ;; Commenting out marmalade for the time being since it's fairly broken
 ;; (add-to-list 'package-archives
-;;	     '("marmalade" . "https://marmalade-repo.org/packages/"))
+;;  '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 ;; Initialize the package manager
@@ -31,7 +31,7 @@
 (defvar my-packages
   '(org
     org-bullets
-    move-text    
+    move-text
     helm
     wc-mode
     olivetti
@@ -53,7 +53,7 @@
   ;; install the missing packages
   (dolist (p my-packages)
     (when (not (package-installed-p p))
-      (package-install p)))); fetch the list of packages available 
+      (package-install p)))); fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -71,12 +71,12 @@
 (require 'org)
 (require 'org-bullets)
 (use-package org
-	     :init
-	     (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
-	     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-	     (add-hook 'org-mode-hook (lambda () (wc-mode)))
-	     :config
-	     (setq olivetti-body-width 80))
+     :init
+     (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
+     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+     (add-hook 'org-mode-hook (lambda () (wc-mode)))
+     :config
+     (setq olivetti-body-width 80))
 
 ;; Add special characters to the list, the order is:
 ;; ("replacement" "latex" nil "html" "ascii" "latin1" "utf8")
@@ -131,7 +131,7 @@
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x r b") 'helm-bookmarks)
-(global-set-key (kbd "C-x m") 'helm-M-x)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
@@ -139,6 +139,8 @@
 ;;
 ;; Misc. Package Config
 ;;
+
+;; Move text with M-<up> and M-<down>
 (move-text-default-bindings)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -152,9 +154,45 @@
 ;;
 ;; UI
 ;;
-;; I like this font on mac
 (set-face-attribute 'default nil :font "PT Mono-14")
-(setq mac-command-modifier 'meta)
+
+;; Show whitespace
+(setq whitespace-style '(face tabs tab-mark trailing))
+(custom-set-faces
+ '(whitespace-tab ((t (:foreground "#636363")))))
+(setq whitespace-display-mappings
+  '((tab-mark 9 [124 9] [92 9])))
+(global-whitespace-mode 1)
+
+;; Show line numbers
+(global-display-line-numbers-mode +1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; KEY MAPPING
+;;
+(setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
+
+;; Instead of mapping the super to meta key and vice versa on Linux,
+;; Set the dip switches on the HHKB to be like so (1-6): 101010
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; TABS
+;;
+(setq custom-tab-width 2)
+
+(defun infer-indentation-style ()
+  ;; Borrowed from emacswiki.org/emacs/NoTabs
+  (let ((space-count (how-many "^  " (point-min) (point-max)))
+        (tab-count (how-many "^\t" (point-min) (point-max))))
+    (if (> space-count tab-count) (setq indent-tabs-mode nil))
+    (if (> tab-count space-count) (setq indent-tabs-mode t))))
+
+(setq-default indent-tabs-mode nil)
+(infer-indentation-style)
+(electric-indent-mode +1)
+(setq backward-delete-char-untabify-method 'hungry)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -198,4 +236,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
- 
