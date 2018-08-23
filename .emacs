@@ -32,6 +32,7 @@
   '(org
     org-bullets
     move-text
+    projectile
     helm
     wc-mode
     olivetti
@@ -123,6 +124,19 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Projectile
+;;
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(setq projectile-project-search-path '("~/code/" "~/org/"))
+
+;; Don't contact the remote SVN server for searches
+(setq projectile-svn-command
+      "find . -type f -not -iwholename '*.svn/*' -print0")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Helm
 ;;
 (require 'helm)
@@ -159,6 +173,10 @@
 ;; Show whitespace
 (setq whitespace-style '(face tabs tab-mark trailing))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(whitespace-tab ((t (:foreground "#636363")))))
 (setq whitespace-display-mappings
   '((tab-mark 9 [124 9] [92 9])))
@@ -167,19 +185,50 @@
 ;; Show line numbers
 (global-display-line-numbers-mode +1)
 
+;; Define some shortcuts for splitting windows
+(defun el-next-window ()
+  (interactive)
+  (other-window +1))
+
+(defun el-prev-window ()
+  (interactive)
+  (other-window -1))
+
+;; Split windows in a predetermined way
+;; this is called later in the file after window setup
+(defun default-window-setup ()
+  (interactive)
+  (delete-other-windows)
+  (split-window-right)
+  ;; open whatever is the next buffer in this window
+  (el-next-window)
+  (split-window-below)
+  (switch-to-next-buffer)
+  ;; open the terminal and go back to the main window
+  (el-next-window)
+  (term "/usr/bin/zsh")
+  (display-line-numbers-mode -1)
+  (el-next-window))
+
+(add-hook 'window-setup-hook 'default-window-setup)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; KEY MAPPING
 ;;
-(setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
 
+(setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
 ;; Instead of mapping the super to meta key and vice versa on Linux,
 ;; Set the dip switches on the HHKB to be like so (1-6): 101010
+
+(global-set-key (kbd "C-\\") 'el-next-window)
+(global-set-key (kbd "M-\\") 'el-prev-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; TABS
 ;;
+(setq default-tab-width 2)
 (setq custom-tab-width 2)
 
 (defun infer-indentation-style ()
@@ -189,6 +238,7 @@
     (if (> space-count tab-count) (setq indent-tabs-mode nil))
     (if (> tab-count space-count) (setq indent-tabs-mode t))))
 
+(setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (infer-indentation-style)
 (electric-indent-mode +1)
@@ -203,6 +253,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(toggle-frame-maximized)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -230,9 +281,4 @@
  '(custom-enabled-themes (quote (wheatgrass)))
  '(inhibit-startup-screen t)
  '(package-selected-packages (quote (org))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
