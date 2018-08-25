@@ -194,9 +194,8 @@
   (interactive)
   (other-window -1))
 
-;; Split windows in a predetermined way
-;; this is called later in the file after window setup
-(defun default-window-setup ()
+;; Split windows in a predetermined way for development.
+(defun dev-window-setup ()
   (interactive)
   (delete-other-windows)
   (split-window-right)
@@ -210,7 +209,9 @@
   (display-line-numbers-mode -1)
   (el-next-window))
 
-(add-hook 'window-setup-hook 'default-window-setup)
+;; This isn't always a good idea, but commenting this out in case it
+;; becomes a good idea again.
+;; (add-hook 'window-setup-hook 'default-window-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -249,7 +250,6 @@
 ;; Fullscreen
 ;; Emulate the TTY as much as possible, no GUI stuff.
 ;;
-;; (toggle-frame-fullscreen)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
