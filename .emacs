@@ -31,6 +31,7 @@
 (defvar my-packages
   '(org
     org-bullets
+    markdown-mode
     move-text
     projectile
     helm
@@ -76,7 +77,7 @@
      (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
      (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-     (Add-hook 'org-mode-hook (lambda () (wc-mode)))
+     (add-hook 'org-mode-hook (lambda () (wc-mode)))
      :config
      (setq olivetti-body-width 80))
 
@@ -105,6 +106,20 @@
       ("\\section{%s}" . "\\section*{%s}")
       ("\\subsection{%s}" . "\\subsection*{%s}")
       ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Markdown-Mode
+;;
+(use-package markdown-mode
+  ;; Set it visually similar to org-mode
+  :init
+  (add-hook 'markdown-mode-hook 'turn-on-olivetti-mode)
+  (add-hook 'markdown-mode-hook (lambda () (display-line-numbers-mode -1)))
+  (add-hook 'markdown-mode-hook (lambda () (wc-mode)))
+  :config
+  (setq olivetti-body-width 80))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Use User-$PATH
