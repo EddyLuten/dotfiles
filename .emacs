@@ -75,7 +75,8 @@
      :init
      (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-     (add-hook 'org-mode-hook (lambda () (wc-mode)))
+     (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+     (Add-hook 'org-mode-hook (lambda () (wc-mode)))
      :config
      (setq olivetti-body-width 80))
 
