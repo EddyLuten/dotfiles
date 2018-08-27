@@ -238,10 +238,11 @@
     (if (> space-count tab-count) (setq indent-tabs-mode nil))
     (if (> tab-count space-count) (setq indent-tabs-mode t))))
 
+;; TODO this needs some serious work in order to function correctly
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
-(infer-indentation-style)
-(electric-indent-mode +1)
+;; (infer-indentation-style)
+;; (electric-indent-mode +1)
 (setq backward-delete-char-untabify-method 'hungry)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
