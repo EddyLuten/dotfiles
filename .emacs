@@ -31,6 +31,7 @@
 (defvar my-packages
   '(org
     org-bullets
+    markdown-mode
     move-text
     projectile
     helm
@@ -75,6 +76,7 @@
      :init
      (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+     (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
      (add-hook 'org-mode-hook (lambda () (wc-mode)))
      :config
      (setq olivetti-body-width 80))
@@ -104,6 +106,20 @@
       ("\\section{%s}" . "\\section*{%s}")
       ("\\subsection{%s}" . "\\subsection*{%s}")
       ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Markdown-Mode
+;;
+(use-package markdown-mode
+  ;; Set it visually similar to org-mode
+  :init
+  (add-hook 'markdown-mode-hook 'turn-on-olivetti-mode)
+  (add-hook 'markdown-mode-hook (lambda () (display-line-numbers-mode -1)))
+  (add-hook 'markdown-mode-hook (lambda () (wc-mode)))
+  :config
+  (setq olivetti-body-width 80))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Use User-$PATH
@@ -194,9 +210,8 @@
   (interactive)
   (other-window -1))
 
-;; Split windows in a predetermined way
-;; this is called later in the file after window setup
-(defun default-window-setup ()
+;; Split windows in a predetermined way for development.
+(defun dev-window-setup ()
   (interactive)
   (delete-other-windows)
   (split-window-right)
@@ -210,7 +225,9 @@
   (display-line-numbers-mode -1)
   (el-next-window))
 
-(add-hook 'window-setup-hook 'default-window-setup)
+;; This isn't always a good idea, but commenting this out in case it
+;; becomes a good idea again.
+;; (add-hook 'window-setup-hook 'default-window-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -250,7 +267,6 @@
 ;; Fullscreen
 ;; Emulate the TTY as much as possible, no GUI stuff.
 ;;
-;; (toggle-frame-fullscreen)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
