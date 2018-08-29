@@ -103,9 +103,9 @@ if [ $? -eq 0 ]; then
   # equivalent-esque of 'git add .'
   svn-apply() {
     echo '-- add new'
-    svn st | grep ^\? | sed 's/?    //' | xargs svn add
+    svn st | grep '^\?' | sed 's/?    //' | xargs svn add
     echo '-- rm old'
-    svn st | grep ^\! | sed 's/!    //' | xargs svn rm
+    svn st | grep '^\!' | sed 's/!    //' | xargs svn rm
     echo '-- status'
     svn st
   }
