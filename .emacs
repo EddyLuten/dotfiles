@@ -39,6 +39,7 @@
     olivetti
     exec-path-from-shell
     htmlize
+    editorconfig
     use-package
     restart-emacs)
   "A list of packages to ensure are installed at launch.")
@@ -64,6 +65,15 @@
 ;; use-package allows for easier package configuration
 ;;
 (require 'use-package)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; EditorConfig <3
+;;
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -182,21 +192,36 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; TABS
+;;
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq custom-tab-width 2)
+
+(setq backward-delete-char-untabify-method 'hungry)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; UI
 ;;
 (set-face-attribute 'default nil :font "PT Mono-14")
 
 ;; Show whitespace
-(setq whitespace-style '(face tabs tab-mark trailing))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-tab ((t (:foreground "#636363")))))
-(setq whitespace-display-mappings
-  '((tab-mark 9 [124 9] [92 9])))
-(global-whitespace-mode 1)
+;; Commented out because it's a pain..
+;; (setq whitespace-style
+;;       '(indentation
+;;         tabs
+;;         tab-mark
+;;         trailing))
+;; (custom-set-faces
+;;  '(whitespace-tab ((t (:foreground "#636363"))))
+;;  '(whitespace-space ((t (:foreground "#FFFFFF")))))
+;; (setq whitespace-display-mappings
+;;       '(
+;;         (tab-mark 9 [124 9] [92 9])
+;;         (space-mark 32 [183] [46])
+;;         ))
+;; (global-whitespace-mode 1)
 
 ;; Show line numbers
 (global-display-line-numbers-mode +1)
@@ -211,7 +236,7 @@
   (other-window -1))
 
 ;; Split windows in a predetermined way for development.
-(defun dev-window-setup ()
+(defun el-dev-window-setup ()
   (interactive)
   (delete-other-windows)
   (split-window-right)
@@ -240,27 +265,6 @@
 
 (global-set-key (kbd "C-\\") 'el-next-window)
 (global-set-key (kbd "M-\\") 'el-prev-window)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; TABS
-;;
-(setq default-tab-width 2)
-(setq custom-tab-width 2)
-
-(defun infer-indentation-style ()
-  ;; Borrowed from emacswiki.org/emacs/NoTabs
-  (let ((space-count (how-many "^  " (point-min) (point-max)))
-        (tab-count (how-many "^\t" (point-min) (point-max))))
-    (if (> space-count tab-count) (setq indent-tabs-mode nil))
-    (if (> tab-count space-count) (setq indent-tabs-mode t))))
-
-;; TODO this needs some serious work in order to function correctly
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
-;; (infer-indentation-style)
-;; (electric-indent-mode +1)
-(setq backward-delete-char-untabify-method 'hungry)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
