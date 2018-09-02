@@ -122,6 +122,12 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Term-mode
+;;
+(add-hook 'term-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Use User-$PATH
 ;;
 (exec-path-from-shell-initialize)
