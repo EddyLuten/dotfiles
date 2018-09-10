@@ -117,6 +117,11 @@
       ("\\subsection{%s}" . "\\subsection*{%s}")
       ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 
+(setq org-todo-keyword-faces
+      '(("TODO" . "red")
+        ("DOING" . "yellow")
+        ("DONE" . (:foreground "green" :weight bold))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Markdown-Mode
