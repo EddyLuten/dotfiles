@@ -8,19 +8,14 @@
 ;;
 ;; SERVER
 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (server-start)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; PACKAGE MANAGEMENT
 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
 ;; Set up additional package repositories
-;; Commenting out marmalade for the time being since it's fairly broken
-;; (add-to-list 'package-archives
-;;  '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 ;; Initialize the package manager
@@ -33,10 +28,14 @@
     org-bullets
     markdown-mode
     move-text
+    speedbar
+    sr-speedbar
     projectile
+    projectile-speedbar
     helm
     wc-mode
     olivetti
+    color-theme-sanityinc-tomorrow
     exec-path-from-shell
     htmlize
     editorconfig
@@ -78,7 +77,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; ORG-MODE CONFIG
-;;
 ;;
 (require 'org)
 (require 'org-bullets)
@@ -127,13 +125,14 @@
 ;; Markdown-Mode
 ;;
 (use-package markdown-mode
-  ;; Set it visually similar to org-mode
+  ;; Set it up visually similar to org-mode
   :init
   (add-hook 'markdown-mode-hook 'turn-on-olivetti-mode)
   (add-hook 'markdown-mode-hook (lambda () (display-line-numbers-mode -1)))
   (add-hook 'markdown-mode-hook (lambda () (wc-mode)))
   :config
-  (setq olivetti-body-width 80))
+  (setq olivetti-body-width 80)
+  (setq markdown-command "/usr/bin/pandoc"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -155,9 +154,24 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Global Shortcuts
+;; Global Keys
 ;;
 (global-set-key (kbd "C-c C-e") 'eval-buffer)
+(global-set-key (kbd "<f2>") 'el-sr-speedbar-toggle)
+(global-set-key (kbd "C-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r b") 'helm-bookmarks)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "<home>") 'beginning-of-line) ;; for macos
+(global-set-key (kbd "<end>") 'end-of-line) ;; for macos
+(global-set-key (kbd "C-\\") 'el-next-window)
+(global-set-key (kbd "M-\\") 'el-prev-window)
+
+(setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
+;; Instead of mapping the super to meta key and vice versa on Linux,
+;; Set the dip switches on the HHKB to be like so (1-6): 101010
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -174,17 +188,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Speedbar / sr-speedbar
+;;
+(require 'sr-speedbar)
+(setq speedbar-show-unknown-files t)
+(setq speedbar-directory-unshown-regexp
+      "^\\(CVS\\|RCS\\|SCCS\\|\\.\\.*$\\)\\'")
+(setq sr-speedbar-right-side nil)
+
+;; Keeps the focus in the editing buffer, not in the speedbar
+(defun el-sr-speedbar-toggle ()
+  (interactive)
+  (if (sr-speedbar-exist-p)
+      (sr-speedbar-close)
+    (projectile-speedbar-open-current-buffer-in-tree)))
+
+(add-hook 'speedbar-mode-hook
+          (lambda () (display-line-numbers-mode -1)))
+(add-hook 'speedbar-before-visiting-file-hook
+          (lambda () (other-window +1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Helm
 ;;
 (require 'helm)
 (require 'helm-config)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "C-x r b") 'helm-bookmarks)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -208,31 +239,15 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq custom-tab-width 2)
-
 (setq backward-delete-char-untabify-method 'hungry)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; UI
 ;;
-(set-face-attribute 'default nil :font "PT Mono-14")
+(set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 140)
 
-;; Show whitespace
-;; Commented out because it's a pain..
-;; (setq whitespace-style
-;;       '(indentation
-;;         tabs
-;;         tab-mark
-;;         trailing))
-;; (custom-set-faces
-;;  '(whitespace-tab ((t (:foreground "#636363"))))
-;;  '(whitespace-space ((t (:foreground "#FFFFFF")))))
-;; (setq whitespace-display-mappings
-;;       '(
-;;         (tab-mark 9 [124 9] [92 9])
-;;         (space-mark 32 [183] [46])
-;;         ))
-;; (global-whitespace-mode 1)
+;; TODO find a good way to display trailing and indent whitespace
 
 ;; Show line numbers
 (global-display-line-numbers-mode +1)
@@ -265,22 +280,9 @@
 ;; becomes a good idea again.
 ;; (add-hook 'window-setup-hook 'default-window-setup)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; KEY MAPPING
-;;
-
-(setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
-;; Instead of mapping the super to meta key and vice versa on Linux,
-;; Set the dip switches on the HHKB to be like so (1-6): 101010
-
-(global-set-key (kbd "C-\\") 'el-next-window)
-(global-set-key (kbd "M-\\") 'el-prev-window)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Fullscreen
-;; Emulate the TTY as much as possible, no GUI stuff.
+;; Hide the UI stuff and start in maximized mode
 ;;
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -289,28 +291,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; I want my damn home and end keys to work on mac
+;; Startup behavior
 ;;
-(global-set-key (kbd "<home>") 'beginning-of-line)
-(global-set-key (kbd "<end>") 'end-of-line)
+(add-hook 'window-setup-hook
+          ;; Show the most recent files when starting up emacs
+          (lambda () (setq initial-buffer-choice (helm-recentf))))
 
+(setq inhibit-startup-screen t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Boilerplate stuff
 ;;
-(when (memq window-system '(mac ns x))
+(when (memq window-system '(mac ns  on loaded hook))
   (exec-path-from-shell-initialize))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (wheatgrass)))
- '(inhibit-startup-screen t)
- '(package-selected-packages (quote (org))))
-
+(load-theme 'sanityinc-tomorrow-bright t)
