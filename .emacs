@@ -101,7 +101,9 @@
     ("macrone" "\\={e}" nil "&#275;" "e" "e" "e")
     ("macroni" "\\={i}" nil "&#299;" "i" "i" "i")
     ("macrono" "\\={o}" nil "&#332;" "o" "o" "o")
-    ("macronu" "\\={u}" nil "&#363;" "u" "u" "u")))
+    ("macronu" "\\={u}" nil "&#363;" "u" "u" "u")
+    ("scene" "\\vspace{\\baselineskip}" nil "<br/><br/>" "\\n\\n" "\\n\\n")
+    ("scenebreak" "\\vspace{\\baselineskip}" nil "<br/><br/>" "\\n\\n" "\\n\\n")))
 
 (dolist (repl my-replacements)
   (add-to-list 'org-entities-user repl))
