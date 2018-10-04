@@ -174,6 +174,8 @@
 (setq mac-command-modifier 'meta) ;; map CMD key to meta on macOS
 ;; Instead of mapping the super to meta key and vice versa on Linux,
 ;; Set the dip switches on the HHKB to be like so (1-6): 101010
+;; Also, on Ubuntu, download the Tweaks application and modify the left
+;; alt and left Super keys to be swapped if not using a HHKB.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
