@@ -91,6 +91,7 @@ if [ $? -eq 0 ]; then
   git config --global alias.dirty-branches '!(git branch --merged development | grep -v development | egrep -v "(development|master)")'
   git config --global alias.clean-branches '!(git branch --merged development | egrep -v "(development|master)" | xargs -n 1 git branch -d)'
   git config --global alias.push-branch '!(git rev-parse --abbrev-ref HEAD | xargs -J % git push --set-upstream origin %)'
+  git config --global alias.last 'log -1 HEAD'
 else
   echo 'git not installed!'
 fi

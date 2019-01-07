@@ -26,6 +26,7 @@
 (defvar my-packages
   '(org
     org-bullets
+    evil
     markdown-mode
     move-text
     speedbar
@@ -357,6 +358,9 @@
           (lambda () (setq initial-buffer-choice (helm-recentf))))
 
 (setq inhibit-startup-screen t)
+
+(require 'evil)
+(evil-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Boilerplate stuff
