@@ -19,7 +19,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 ;; Initialize the package manager
-(package-initialize)
+;; (package-initialize)
 (package-refresh-contents)
 
 ;; Define the packages that need to be loaded at the start
@@ -214,6 +214,61 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; ispell
+;;
+;; Honestly, this is a straight up copy and paste job from some thing
+;; that I found online.
+;;
+(defun gcr/ispell-org-header-lines-regexp (h)
+  "Help ispell ignore org header lines."
+  (interactive)
+  (cons (concat "^#\\+" h ":") ".$"))
+
+(defun gcr/ispell-a2isra (block-def)
+  "Add to the ispell skip region alist the BLOCK-DEF."
+  (interactive)
+  (add-to-list 'ispell-skip-region-alist block-def))
+
+(add-to-list 'ispell-skip-region-alist '("^#\\+begin_src ". "#\\+end_src$"))
+(add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC ". "#\\+END_SRC$"))
+(add-to-list 'ispell-skip-region-alist '("^#\\+begin_example ". "#\\+end_example$"))
+(add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXAMPLE ". "#\\+END_EXAMPLE$"))
+(add-to-list 'ispell-skip-region-alist '("\:PROPERTIES\:$" . "\:END\:$"))
+(add-to-list 'ispell-skip-region-alist '("\\[fn:.+:" . "\\]"))
+(add-to-list 'ispell-skip-region-alist '("^http" . "\\]"))
+(add-to-list 'ispell-skip-region-alist '("=.*" . ".*="))
+(add-to-list 'ispell-skip-region-alist '("- \\*.+" . ".*\\*: "))
+
+(mapc (lambda (it)
+        (gcr/ispell-a2isra (gcr/ispell-org-header-lines-regexp it)))
+      '("ATTR_LATEX"
+        "AUTHOR"
+        "CREATOR"
+        "DATE"
+        "DESCRIPTION"
+        "EMAIL"
+        "EXCLUDE_TAGS"
+        "HTML_CONTAINER"
+        "HTML_DOCTYPE"
+        "HTML_HEAD"
+        "HTML_HEAD_EXTRA"
+        "HTML_LINK_HOME"
+        "HTML_LINK_UP"
+        "HTML_MATHJAX"
+        "INFOJS_OPT"
+        "KEYWORDS"
+        "LANGUAGE"
+        "LATEX_CLASS"
+        "LATEX_CLASS_OPTIONS"
+        "LATEX_HEADER"
+        "LATEX_HEADER_EXTRA"
+        "OPTIONS"
+        "SELECT_TAGS"
+        "STARTUP"
+        "TITLE"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Helm
 ;;
 (require 'helm)
@@ -316,8 +371,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig))))
+   '(color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

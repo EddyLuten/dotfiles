@@ -128,3 +128,5 @@ PHPDIR='/usr/local/opt/php@5.6'
 if [ -d "$PHPDIR/bin" -a -d "$PHPDIR/sbin" ]; then
   export PATH="$PHPDIR/bin:$PHPDIR/sbin:$PATH"
 fi
+
+eval $(thefuck --alias)
