@@ -365,6 +365,8 @@
 ;;
 ;; Boilerplate stuff
 ;;
+;; Inconsolata on Ubuntu: apt install fonts-inconsolata
+;;
 (when (memq window-system '(mac ns  on loaded hook))
   (exec-path-from-shell-initialize))
 
@@ -374,11 +376,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(global-display-line-numbers-mode t)
+ '(menu-bar-mode nil)
  '(package-selected-packages
-   '(color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig)))
+   '(color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 158 :width normal)))))
