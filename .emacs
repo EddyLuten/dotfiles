@@ -29,10 +29,10 @@
     evil
     markdown-mode
     move-text
-    speedbar
-    sr-speedbar
-    projectile
-    projectile-speedbar
+    ;speedbar
+    ;sr-speedbar
+    ;projectile
+    ;projectile-speedbar
     helm
     wc-mode
     olivetti
@@ -160,8 +160,8 @@
 ;; Global Keys
 ;;
 (global-set-key (kbd "C-c C-e") 'eval-buffer)
-(global-set-key (kbd "<f2>") 'el-sr-speedbar-toggle)
-(global-set-key (kbd "C-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
+;(global-set-key (kbd "<f2>") 'el-sr-speedbar-toggle)
+;(global-set-key (kbd "C-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x r b") 'helm-bookmarks)
 (global-set-key (kbd "M-x") 'helm-M-x)
