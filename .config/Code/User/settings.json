@@ -12,10 +12,13 @@
     // JS Specific Config
     "javascript.implicitProjectConfig.experimentalDecorators": true,
 
+    // Zen Mode config
+    "zenMode.centerLayout": true,
+    "zenMode.fullScreen": true,
+    "zenMode.restore": true,
+    "zenMode.hideActivityBar": true,
+
     // Macros
     "macros": {
-        "writeMode": [
-            "workbench.action.toggleFullScreen",
-        ],
     },
 }

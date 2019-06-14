@@ -2,7 +2,7 @@
 [
     {
         "key": "f11",
-        "command": "macros.writeMode",
+        "command": "workbench.action.toggleZenMode",
         "when": "editorTextFocus"
     },
     {
