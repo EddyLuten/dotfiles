@@ -123,11 +123,20 @@ elif [ -s "$NVM_DIR/nvm.sh" ]; then
 fi
 
 ###############################################################################
-# PHP 5.6
+# PHP 5.6 & PHPBREW
 
 PHPDIR='/usr/local/opt/php@5.6'
 if [ -d "$PHPDIR/bin" -a -d "$PHPDIR/sbin" ]; then
   export PATH="$PHPDIR/bin:$PHPDIR/sbin:$PATH"
 fi
 
-eval $(thefuck --alias)
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+###############################################################################
+# thefuck/fuck
+
+which thefuck > /dev/null
+if [ $? -eq 0 ]; then
+  eval $(thefuck --alias)
+  alias fuck='fuck --yeah'
+fi
