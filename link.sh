@@ -52,3 +52,17 @@ link_for .zshrc
 link_for .aliases
 link_for .emacs
 link_for .vimrc
+
+which code > /dev/null
+if [ $? -eq 0 ]; then
+    echo '-'
+    echo 'Found vscode...'
+    link_for '.config/Code/User/keybindings.json'
+    link_for '.config/Code/User/settings.json'
+    echo '-'
+    if prompt 'Install recommended extensions?'; then
+        cat ./.config/Code/User/extensions.list | xargs -L1 code --install-extension
+    fi
+fi
+
+echo 'Done.'

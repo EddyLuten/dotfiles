@@ -1,0 +1,21 @@
+{
+    // Editor Config
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 18,
+    "editor.fontLigatures": true,
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": true,
+    
+    // Terminal Config
+    "terminal.integrated.fontFamily": "Fira Code",
+    
+    // JS Specific Config
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+
+    // Macros
+    "macros": {
+        "writeMode": [
+            "workbench.action.toggleFullScreen",
+        ],
+    },
+}
