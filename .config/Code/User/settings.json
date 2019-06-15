@@ -5,7 +5,7 @@
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
-    
+
     // Terminal Config
     "terminal.integrated.fontFamily": "Fira Code",
     
