@@ -16,6 +16,7 @@ sudo apt install -y\
     keychain\
     fonts-firacode\
     insync\
+    pandoc\
 
 sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
