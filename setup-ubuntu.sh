@@ -34,6 +34,8 @@ sudo snap install \
     spotify\
     keepassxc
 
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
 if prompt 'Link dotfiles now?'; then
     ./link.sh
 fi
