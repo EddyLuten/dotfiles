@@ -6,6 +6,13 @@
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
 
+    // C++
+    "clang-format.executable": "clang-format-9",
+    "clang.executable": "clang-9",
+    "[cpp]": {
+        // "editor.wordBasedSuggestions": false
+    },
+
     // Terminal Config
     "terminal.integrated.fontFamily": "Fira Code",
     

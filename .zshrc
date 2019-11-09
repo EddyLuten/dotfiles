@@ -122,6 +122,15 @@ elif [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
 fi
 
+##############################################################################
+# RBENV
+
+RBENVDIR="$HOME/.rbenv/bin"
+if [ -d $RBENVDIR ]; then
+  export PATH="$RBENVDIR:$PATH"
+  eval "$(rbenv init -)"
+fi
+
 ###############################################################################
 # PHP 5.6 & PHPBREW
 
