@@ -15,8 +15,17 @@ sudo apt install -y\
     zsh\
     keychain\
     fonts-firacode\
+    fonts-powerline\
     insync\
     pandoc\
+    thefuck\
+    gnome-tweaks\
+    python3\
+    python3-pip\
+    python3-dev\
+    python3-setuptools\
+
+sudo pip3 install thefuck
 
 sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
