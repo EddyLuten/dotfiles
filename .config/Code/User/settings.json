@@ -5,6 +5,8 @@
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
+    "editor.rulers": [80, 100],
+    "window.zoomLevel": 1,
 
     // C++
     "clang-format.executable": "clang-format-9",
@@ -15,6 +17,7 @@
 
     // Terminal Config
     "terminal.integrated.fontFamily": "Fira Code",
+    "terminal.integrated.rendererType": "dom",
     
     // JS Specific Config
     "javascript.implicitProjectConfig.experimentalDecorators": true,
