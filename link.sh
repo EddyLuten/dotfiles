@@ -37,6 +37,7 @@ link_for .zshrc
 link_for .aliases
 link_for .emacs
 link_for .vimrc
+link_for .xmodmap
 
 which code > /dev/null
 if [ $? -eq 0 ]; then

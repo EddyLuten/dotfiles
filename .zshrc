@@ -154,3 +154,10 @@ fi
 # Rust / Cargo
 
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
+
+###############################################################################
+# Rebind keys via xmodmap
+if [ -f "$HOME/.xmodmap" ]; then
+  xmodmap ~/.xmodmap
+fi
+
