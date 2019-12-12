@@ -159,6 +159,6 @@ fi
 # Rebind keys if required:
 #
 #   sudo vi /etc/default/keyboard
-#   XKBOPTIONS="ctrl:nocaps"
+#   XKBOPTIONS="ctrl:nocaps,ctrl:swap_rwin_rctl"
 #   sudo dpkg-reconfigure keyboard-configuration
 
