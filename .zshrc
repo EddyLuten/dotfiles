@@ -156,8 +156,9 @@ fi
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
 
 ###############################################################################
-# Rebind keys via xmodmap
-if [ -f "$HOME/.xmodmap" ]; then
-  xmodmap ~/.xmodmap
-fi
+# Rebind keys if required:
+#
+#   sudo vi /etc/default/keyboard
+#   XKBOPTIONS="ctrl:nocaps"
+#   sudo dpkg-reconfigure keyboard-configuration
 
