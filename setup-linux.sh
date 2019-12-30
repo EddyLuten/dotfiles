@@ -55,6 +55,7 @@ fi
 which snap > /dev/null
 if [ $? -eq 0 ]; then
   sudo snap install code --classic
+  sudo snap install emacs --classic
   sudo snap install \
     spotify\
     keepassxc
