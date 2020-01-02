@@ -19,7 +19,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 ;; Initialize the package manager
-;; (package-initialize)
+(package-initialize)
 (package-refresh-contents)
 
 ;; Define the packages that need to be loaded at the start
@@ -29,10 +29,10 @@
     evil
     markdown-mode
     move-text
-    ;speedbar
-    ;sr-speedbar
-    ;projectile
-    ;projectile-speedbar
+    speedbar
+    sr-speedbar
+    projectile
+    projectile-speedbar
     helm
     wc-mode
     olivetti
@@ -83,7 +83,7 @@
 (require 'org-bullets)
 (use-package org
      :init
-     (add-hook 'org-mode-hook 'turn-on-olivetti-mode)
+     (add-hook 'org-mode-hook 'olivetti-mode)
      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
      (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
      (add-hook 'org-mode-hook (lambda () (wc-mode)))
@@ -160,8 +160,8 @@
 ;; Global Keys
 ;;
 (global-set-key (kbd "C-c C-e") 'eval-buffer)
-;(global-set-key (kbd "<f2>") 'el-sr-speedbar-toggle)
-;(global-set-key (kbd "C-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
+(global-set-key (kbd "<f2>") 'el-sr-speedbar-toggle)
+(global-set-key (kbd "C-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x r b") 'helm-bookmarks)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -361,6 +361,8 @@
 
 (require 'evil)
 (evil-mode 1)
+
+(setq ring-bell-function 'ignore)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Boilerplate stuff
@@ -379,7 +381,8 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig))
+   (quote
+    (color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

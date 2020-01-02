@@ -29,6 +29,10 @@ sudo apt install -y\
     keychain\
     fonts-firacode\
     fonts-powerline\
+    fonts-inconsolata\
+    fonts-dejavu\
+    fonts-dejavu-core\
+    fonts-dejavu-extra\
     pandoc\
     thefuck\
     gnome-tweaks\
