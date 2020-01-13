@@ -31,4 +31,5 @@
     // Macros
     "macros": {
     },
+    "gitlens.views.fileHistory.avatars": false,
 }
