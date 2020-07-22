@@ -32,4 +32,10 @@
     "macros": {
     },
     "gitlens.views.fileHistory.avatars": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "python.jediEnabled": false,
+    "python.pythonPath": "python3",
 }
