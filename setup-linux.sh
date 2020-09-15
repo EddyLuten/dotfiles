@@ -5,21 +5,6 @@ CODENAME="$(cat /etc/lsb-release | sed -E -n 's/DISTRIB_CODENAME=(.+)/\1/p')"
 
 sudo apt update && sudo apt upgrade -y
 
-# This needs to be a bit less janky for ubuntu and mint...
-hostnamectl | grep -i ubuntu
-if [ $? -eq 0 ]; then
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-  sudo sh -c "echo 'deb http://apt.insynchq.com/ubuntu $CODENAME non-free contrib' > /etc/apt/sources.list.d/insync.list"
-  sudo apt install insync
-fi
-
-hostnamectl | grep -i linuxmint
-if [ $? -eq 0 ]; then
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-  sudo sh -c "echo 'deb http://apt.insynchq.com/mint $CODENAME non-free contrib' > /etc/apt/sources.list.d/insync.list"
-  sudo apt install insync
-fi
-
 sudo apt install -y\
     vim\
     curl\
@@ -68,11 +53,6 @@ else
   sudo apt install snapd
   echo "Installed snap, reboot the system and rerun this script!"
   exit
-fi
-
-which calibre > /dev/null
-if [ $? -ne 0 ]; then
-  sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 fi
 
 which rustc > /dev/null
