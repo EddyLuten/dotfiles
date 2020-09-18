@@ -381,8 +381,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode nil)
  '(package-selected-packages
-   (quote
-    (color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig)))
+   '(color-theme-sanityinc-tomorrow projectile-speedbar sr-speedbar wc-mode use-package restart-emacs projectile org-bullets olivetti move-text markdown-mode htmlize helm exec-path-from-shell editorconfig))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
