@@ -15,5 +15,7 @@ Included scripts:
 
 * [setup-linux.sh](setup-linux.sh) - required applications setup
 * [link.sh](link.sh) - links the dotfiles to the home directory
+* [cleanup.sh](cleanup.sh) - prompts to remove bloatware
+* [config.sh](config.sh) - configures GNOME with decent default settings
 
 [MIT Licensed](LICENSE).

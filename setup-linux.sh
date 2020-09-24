@@ -35,7 +35,7 @@ sudo pip3 install thefuck
 
 which upgrade_oh_my_zsh > /dev/null
 if [ $? -ne 0 ]; then
-  sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   zsh -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 
@@ -69,3 +69,8 @@ fi
 if prompt 'Run cleanup now?'; then
     ./cleanup.sh
 fi
+
+if prompt 'Configure GNOME with sane defaults?' then
+    ./config.sh
+fi
+
