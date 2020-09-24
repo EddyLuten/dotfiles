@@ -42,7 +42,8 @@ link_for .xmodmap
 which code > /dev/null
 if [ $? -eq 0 ]; then
     echo '-'
-    echo 'Found vscode...'
+    echo 'Found vscode:  starting to ensure existence of directories.'
+    code
     link_for '.config/Code/User/keybindings.json'
     link_for '.config/Code/User/settings.json'
     echo '-'

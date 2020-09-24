@@ -3,7 +3,12 @@
 source ./common.sh
 CODENAME="$(cat /etc/lsb-release | sed -E -n 's/DISTRIB_CODENAME=(.+)/\1/p')"
 
-sudo apt update && sudo apt upgrade -y
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+rm packages.microsoft.gpg
+
+sudo apt update && sudo apt upgrade -y && sudo apt install apt-transport-https -y
 
 sudo apt install -y\
     vim\
@@ -19,13 +24,13 @@ sudo apt install -y\
     fonts-dejavu-core\
     fonts-dejavu-extra\
     pandoc\
-    thefuck\
     gnome-tweaks\
     python3\
     python3-pip\
     python3-dev\
     python3-setuptools\
-    telegram-desktop &&\
+    keepassxc\
+    code &&\
 sudo pip3 install thefuck
 
 which upgrade_oh_my_zsh > /dev/null
@@ -37,17 +42,14 @@ fi
 which google-chrome > /dev/null
 if [ $? -ne 0 ]; then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&\
-        sudo dpkg -i google-chrome-stable_current_amd64.deb
-    [[ -e google-chrome-stable_current_amd64.deb ]] && rm -f google-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb &&\
+        rm -f google-chrome-stable_current_amd64.deb
 fi
 
 which snap > /dev/null
 if [ $? -eq 0 ]; then
   sudo snap install code --classic
   sudo snap install emacs --classic
-  sudo snap install \
-    spotify\
-    keepassxc
 else
   echo "Snap is not installed, installing..."
   sudo apt install snapd
@@ -62,4 +64,8 @@ fi
 
 if prompt 'Link dotfiles now?'; then
     ./link.sh
+fi
+
+if prompt 'Run cleanup now?'; then
+    ./cleanup.sh
 fi
