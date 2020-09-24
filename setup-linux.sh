@@ -39,6 +39,11 @@ if [ $? -ne 0 ]; then
   zsh -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 
+which nvm > /dev/null
+if [ $? -ne 0 ]; then
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+fi
+
 which google-chrome > /dev/null
 if [ $? -ne 0 ]; then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&\
@@ -70,7 +75,7 @@ if prompt 'Run cleanup now?'; then
     ./cleanup.sh
 fi
 
-if prompt 'Configure GNOME with sane defaults?' then
+if prompt 'Configure GNOME with sane defaults?'; then
     ./config.sh
 fi
 
