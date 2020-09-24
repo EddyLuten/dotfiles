@@ -38,4 +38,5 @@
     },
     "python.jediEnabled": false,
     "python.pythonPath": "python3",
+    "extensions.ignoreRecommendations": false,
 }
