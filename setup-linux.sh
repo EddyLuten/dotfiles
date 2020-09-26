@@ -8,6 +8,9 @@ sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 rm packages.microsoft.gpg
 
+wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
+sudo add-apt-repository 'deb https://typora.io/linux ./'
+
 sudo apt update && sudo apt upgrade -y && sudo apt install apt-transport-https -y
 
 sudo apt install -y\
@@ -30,7 +33,9 @@ sudo apt install -y\
     python3-dev\
     python3-setuptools\
     keepassxc\
-    code &&\
+    code\
+    typora\
+    &&\
 sudo pip3 install thefuck
 
 which upgrade_oh_my_zsh > /dev/null
@@ -53,7 +58,6 @@ fi
 
 which snap > /dev/null
 if [ $? -eq 0 ]; then
-  sudo snap install code --classic
   sudo snap install emacs --classic
 else
   echo "Snap is not installed, installing..."
