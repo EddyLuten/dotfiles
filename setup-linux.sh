@@ -14,28 +14,28 @@ sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt update && sudo apt upgrade -y && sudo apt install apt-transport-https -y
 
 sudo apt install -y\
-    vim\
-    curl\
-    wget\
-    git\
-    zsh\
-    keychain\
-    fonts-firacode\
-    fonts-powerline\
-    fonts-inconsolata\
-    fonts-dejavu\
-    fonts-dejavu-core\
-    fonts-dejavu-extra\
-    pandoc\
-    gnome-tweaks\
-    python3\
-    python3-pip\
-    python3-dev\
-    python3-setuptools\
-    keepassxc\
-    code\
-    typora\
-    &&\
+  vim\
+  curl\
+  wget\
+  git\
+  zsh\
+  keychain\
+  fonts-firacode\
+  fonts-powerline\
+  fonts-inconsolata\
+  fonts-dejavu\
+  fonts-dejavu-core\
+  fonts-dejavu-extra\
+  pandoc\
+  gnome-tweaks\
+  python3\
+  python3-pip\
+  python3-dev\
+  python3-setuptools\
+  keepassxc\
+  code\
+  typora\
+  &&\
 sudo pip3 install thefuck
 
 which upgrade_oh_my_zsh > /dev/null
@@ -51,9 +51,9 @@ fi
 
 which google-chrome > /dev/null
 if [ $? -ne 0 ]; then
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&\
-        sudo apt install ./google-chrome-stable_current_amd64.deb &&\
-        rm -f google-chrome-stable_current_amd64.deb
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&\
+    sudo apt install ./google-chrome-stable_current_amd64.deb &&\
+    rm -f google-chrome-stable_current_amd64.deb
 fi
 
 which snap > /dev/null
@@ -72,14 +72,17 @@ if [ $? -ne 0 ]; then
 fi
 
 if prompt 'Link dotfiles now?'; then
-    ./link.sh
+    ./link.sh 
 fi
 
 if prompt 'Run cleanup now?'; then
-    ./cleanup.sh
+  ./cleanup.sh
 fi
 
 if prompt 'Configure GNOME with sane defaults?'; then
-    ./config.sh
+  ./config.sh
 fi
 
+if prompt 'Install Fonts?'; then
+  ./fonts.sh
+fi
