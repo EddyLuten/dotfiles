@@ -35,6 +35,9 @@ sudo apt install -y\
   keepassxc\
   code\
   typora\
+  texlive\
+  texlive-fonts-recommended\
+  texlive-fonts-extra\
   &&\
 sudo pip3 install thefuck
 

@@ -1,12 +1,12 @@
 {
     // Editor Config
-    "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 18,
+    "editor.fontFamily": "'Latin Modern Mono Light'",
+    "editor.fontSize": 22,
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
     "editor.rulers": [80, 100],
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
 
     // C++
     "clang-format.executable": "clang-format-9",
