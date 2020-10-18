@@ -8,7 +8,7 @@ profile_id=`dconf read /org/gnome/terminal/legacy/profiles:/default | sed 's/[^a
 dconf write /org/gnome/desktop/interface/enable-animations false
 dconf write /org/gnome/desktop/session/idle-delay "uint32 0"
 dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-dark'"
-dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier']"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'altwin:swap_lalt_lwin']"
 dconf write /org/gnome/desktop/calendar/show-weekdate true
 dconf write /org/gnome/desktop/notifications/show-banners false
 dconf write /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size 32
