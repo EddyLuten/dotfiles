@@ -110,6 +110,15 @@ if [ $? -eq 0 ]; then
     echo '-- status'
     svn st
   }
+
+  # cd into the root directory of the repo
+  svn-root() {
+    set -o pipefail
+    root_dir=$(svn info | grep "Root Path:" | sed -rn "s/^.*\:\s(.*)$/\1/p")
+    if [ $? -eq 0 ]; then
+      cd $root_dir
+    fi
+  }
 fi
 
 ##############################################################################
