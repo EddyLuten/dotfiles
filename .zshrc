@@ -171,4 +171,3 @@ fi
 #   XKBOPTIONS="ctrl:nocaps,ctrl:swap_rwin_rctl"
 #   sudo dpkg-reconfigure keyboard-configuration
 
-echo
