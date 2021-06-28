@@ -7,7 +7,6 @@
     "editor.detectIndentation": true,
     "editor.rulers": [80, 100, 120],
     "extensions.ignoreRecommendations": false,
-    "window.zoomLevel": 0,
 
     // C++
     "clang-format.executable": "clang-format-9",
@@ -21,7 +20,7 @@
     "terminal.integrated.rendererType": "auto",
     
     // JS Specific Config
-    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
 
     // Zen Mode config
     "zenMode.centerLayout": true,
@@ -44,7 +43,7 @@
     // PHP
     "php.suggest.basic": false,
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
-    "php-cs-fixer.lastDownload": 1605039237477,
+    "php-cs-fixer.lastDownload": 1624566737216,
 
     // XML Tools
     "xmlTools.enableXmlTreeView": true,
