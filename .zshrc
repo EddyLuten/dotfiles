@@ -10,6 +10,7 @@ ZSH_THEME="agnoster"
 plugins=(
   git
   zsh-syntax-highlighting
+  aws
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -67,7 +68,9 @@ fi
 
 which keychain > /dev/null
 if [ $? -eq 0 ]; then
-  eval `keychain -q --eval --agents ssh id_rsa`
+  # eval `keychain -q --eval --agents ssh id_rsa`
+  /usr/bin/keychain $HOME/.ssh/id_rsa
+  source $HOME/.keychain/$HOST-sh
 else
   echo 'keychain not installed!'
 fi
@@ -124,12 +127,8 @@ fi
 ##############################################################################
 # NVM
 
-export NVM_DIR="$HOME/.nvm"
-if [ -s /usr/local/opt/nvm/nvm.sh ]; then
-  . "/usr/local/opt/nvm/nvm.sh"
-elif [ -s "$NVM_DIR/nvm.sh" ]; then
-  . "$NVM_DIR/nvm.sh"
-fi
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 ##############################################################################
 # RBENV
@@ -163,11 +162,3 @@ fi
 # Rust / Cargo
 
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
-
-###############################################################################
-# Rebind keys if required:
-#
-#   sudo vi /etc/default/keyboard
-#   XKBOPTIONS="ctrl:nocaps,ctrl:swap_rwin_rctl"
-#   sudo dpkg-reconfigure keyboard-configuration
-

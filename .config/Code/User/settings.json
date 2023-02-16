@@ -1,5 +1,5 @@
 {
-    // Editor Config
+    "window.zoomLevel": 0.5,
     "editor.fontFamily": "'JetBrains Mono', sans-serif",
     "editor.fontSize": 20,
     "editor.fontLigatures": false,
@@ -7,6 +7,13 @@
     "editor.detectIndentation": true,
     "editor.rulers": [80, 100, 120],
     "extensions.ignoreRecommendations": false,
+
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 80
+    },
+
+    "open-in-browser.default": "firefox",
 
     // C++
     "clang-format.executable": "clang-format-9",
@@ -16,8 +23,10 @@
     },
 
     // Terminal Config
-    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "terminal.integrated.fontFamily": "'JetBrains Mono', sans-serif",
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.rendererType": "auto",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     
     // JS Specific Config
     "js/ts.implicitProjectConfig.experimentalDecorators": true,
@@ -48,5 +57,12 @@
     // XML Tools
     "xmlTools.enableXmlTreeView": true,
     "xmlTools.enableXmlTreeViewMetadata": true,
-    "xmlTools.enableXmlTreeViewCursorSync": true
+    "xmlTools.enableXmlTreeViewCursorSync": true,
+    "editor.inlineSuggest.enabled": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)"
 }

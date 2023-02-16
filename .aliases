@@ -8,5 +8,8 @@ alias g='git'
 alias gs='git status'
 alias gsa='git add .'
 alias c='f(){gsa && git commit -m "$1"};f'
+
+# Other aliases
 alias entry='c "Entry" && gp'
 alias note='c "Notes for $(date -I)" && gp'
+alias xx='exit 0'
