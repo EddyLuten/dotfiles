@@ -1,7 +1,7 @@
 {
-    "window.zoomLevel": 0.5,
+    "window.zoomLevel": 2,
     "editor.fontFamily": "'JetBrains Mono', sans-serif",
-    "editor.fontSize": 20,
+    "editor.fontSize": 16,
     "editor.fontLigatures": false,
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
@@ -24,12 +24,13 @@
 
     // Terminal Config
     "terminal.integrated.fontFamily": "'JetBrains Mono', sans-serif",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.rendererType": "auto",
     "terminal.integrated.defaultProfile.linux": "zsh",
     
     // JS Specific Config
     "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "autoimport.doubleQuotes": false,
 
     // Zen Mode config
     "zenMode.centerLayout": true,
@@ -62,7 +63,22 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+    "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Monokai Pro (Filter Machine)"
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "git.autofetch": true,
+    "vscord.app.name": "Visual Studio Code",
+
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "redhat.telemetry.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "[csharp]": {
+        "editor.maxTokenizationLineLength": 2500,
+        // disables inline references
+        "editor.codeLens": false,
+    },
+    "git.confirmSync": false,
 }

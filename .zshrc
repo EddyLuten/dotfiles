@@ -139,6 +139,12 @@ if [ -d $RBENVDIR ]; then
   eval "$(rbenv init -)"
 fi
 
+##############################################################################
+# Install Ruby Gems to ~/gems
+
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
 ###############################################################################
 # PHP 5.6 & PHPBREW
 
@@ -162,3 +168,13 @@ fi
 # Rust / Cargo
 
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
+
+###############################################################################
+# Python
+export PATH="$HOME/.local/bin:$PATH"
+
+###############################################################################
+# dotnet
+#
+export PATH="$PATH:$HOME/.dotnet/tools"
+
