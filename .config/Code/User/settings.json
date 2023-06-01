@@ -22,6 +22,11 @@
         // "editor.wordBasedSuggestions": false
     },
 
+    "[rust]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    },
+
     // Terminal Config
     "terminal.integrated.fontFamily": "'JetBrains Mono', sans-serif",
     "terminal.integrated.fontSize": 14,
@@ -81,4 +86,7 @@
         "editor.codeLens": false,
     },
     "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "zig.zls.path": "/home/eddy/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
+    "debug.onTaskErrors": "abort",
 }

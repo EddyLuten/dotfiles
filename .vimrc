@@ -3,9 +3,13 @@ syntax on
 
 " Spaces, not tabs
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+
+" Enables displaying whitespace
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
+set list
 
 " Visual column indication
 highlight ColorColumn ctermbg=DarkGrey

@@ -14,7 +14,7 @@ sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt update && sudo apt upgrade -y && sudo apt install apt-transport-https -y
 
 sudo apt install -y\
-  vim\
+  neovim\
   curl\
   wget\
   git\
