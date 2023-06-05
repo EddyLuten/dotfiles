@@ -18,5 +18,15 @@
         "key": "ctrl+`",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
+    },
+    {
+        "key": "meta+[",
+        "command": "editor.emmet.action.matchTag",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "meta+shift+[",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
     }
 ]
