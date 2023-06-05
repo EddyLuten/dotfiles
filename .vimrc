@@ -6,6 +6,7 @@ filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set number
 
 " Enables displaying whitespace
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·

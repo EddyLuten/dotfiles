@@ -69,7 +69,7 @@ fi
 which keychain > /dev/null
 if [ $? -eq 0 ]; then
   # eval `keychain -q --eval --agents ssh id_rsa`
-  /usr/bin/keychain $HOME/.ssh/id_rsa
+  keychain $HOME/.ssh/id_rsa
   source $HOME/.keychain/$HOST-sh
 else
   echo 'keychain not installed!'

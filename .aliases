@@ -10,6 +10,10 @@ alias gsa='git add .'
 alias sup='svn up'
 alias c='f(){gsa && git commit -m "$1"};f'
 
+# replace vim with nvim
+alias vim="nvim"
+alias vi="nvim"
+
 # Other aliases
 alias entry='c "Entry" && gp'
 alias note='c "Notes for $(date -I)" && gp'
