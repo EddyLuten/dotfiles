@@ -98,4 +98,8 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "cmake.configureOnOpen": false,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
 }
