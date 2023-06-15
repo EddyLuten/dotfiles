@@ -39,6 +39,7 @@ link_for .emacs
 link_for .vimrc
 link_for .xmodmap
 link_for .hyper.js
+link_for .wezterm.lua
 
 which code > /dev/null
 if [ $? -eq 0 ]; then

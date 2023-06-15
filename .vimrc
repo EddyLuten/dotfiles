@@ -7,6 +7,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set number
+set relativenumber
 
 " Enables displaying whitespace
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
