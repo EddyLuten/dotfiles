@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
 ##############################################################################
+# Brew Autocomplete
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+##############################################################################
 # ZSH config
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -156,6 +164,14 @@ fi
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 ###############################################################################
+# Enable password-store extensions
+
+which pass > /dev/null
+if [ $? -eq 0 ]; then
+  export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
+fi
+
+###############################################################################
 # thefuck/fuck
 
 which thefuck > /dev/null
@@ -183,5 +199,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 #
 export PATH="$PATH:$HOME/.nimble/bin"
 
-
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
