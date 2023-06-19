@@ -11,6 +11,9 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- Disable font ligatures
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
 -- This is where you actually apply your config choices
 config.font = wezterm.font('JetBrains Mono')
 config.font_size = 18
