@@ -3,7 +3,11 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 
 -- This table will hold the configuration.
-local config = {}
+local config = {
+  colors = {
+    cursor_bg = 'transparent',
+  },
+}
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -19,10 +23,10 @@ config.font = wezterm.font('JetBrains Mono')
 config.font_size = 18
 config.initial_cols = 100
 config.initial_rows = 30
-config.cursor_blink_rate = 250
-config.default_cursor_style = 'BlinkingBar'
-config.cursor_blink_ease_in = 'Constant'
-config.cursor_blink_ease_out = 'Constant'
+config.cursor_blink_rate = 750
+config.default_cursor_style = 'BlinkingBlock'
+config.cursor_blink_ease_in = 'EaseIn'
+config.cursor_blink_ease_out = 'EaseOut'
 
 config.window_background_gradient = {
   orientation = 'Vertical',
