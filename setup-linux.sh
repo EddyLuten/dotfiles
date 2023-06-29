@@ -89,3 +89,16 @@ fi
 if prompt 'Install Fonts?'; then
   ./fonts.sh
 fi
+
+if prompt 'Install middle-mouse paste blocking for Linux?'; then
+  pushd .
+  sudo apt install libev-dev libx11-dev libxi-dev
+  cd ~ && git clone https://github.com/milaq/XMousePasteBlock.git
+  cd XmousePaseBlock
+  make
+  sudo make install
+  popd
+  mkdir -p ~/.config/autostart
+  cp xmousepasteblock.desktop ~/.config/autostart
+fi
+
