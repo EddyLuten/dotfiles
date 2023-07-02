@@ -1,5 +1,4 @@
 {
-    "window.zoomLevel": 2,
     "editor.fontFamily": "'JetBrains Mono', sans-serif",
     "editor.fontSize": 16,
     "editor.fontLigatures": false,
@@ -81,7 +80,7 @@
     },
     "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro",
     "typescript.updateImportsOnFileMove.enabled": "always",
     "git.autofetch": true,
 
@@ -109,4 +108,5 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
+    "window.zoomLevel": 2,
 }
