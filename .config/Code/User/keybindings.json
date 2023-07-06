@@ -28,5 +28,15 @@
         "key": "meta+shift+[",
         "command": "editor.action.smartSelect.expand",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "-dendron.lookupSchema",
+        "when": "dendron:pluginActive && shellExecutionSupported"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "-md-shortcut.toggleImage",
+        "when": "editorTextFocus && markdownShortcuts:enabled"
     }
 ]

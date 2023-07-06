@@ -18,4 +18,4 @@ alias vi="nvim"
 alias entry='c "Entry" && gp'
 alias note='c "Notes for $(date -I)" && gp'
 alias xx='exit 0'
-alias apt-upgrade='sudo apt update && sudo apt upgrade -y && sudo apt clean && sudo apt autoremove && sudo apt autoclean'
+alias apt-upgrade='sudo zsh -c "apt update && apt upgrade -y && apt autoremove && apt clean && snap refresh"'
