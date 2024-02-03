@@ -27,7 +27,7 @@ config.cursor_blink_rate = 750
 config.default_cursor_style = 'BlinkingBlock'
 config.cursor_blink_ease_in = 'EaseIn'
 config.cursor_blink_ease_out = 'EaseOut'
-
+config.check_for_updates = false
 config.window_background_gradient = {
   orientation = 'Vertical',
 
