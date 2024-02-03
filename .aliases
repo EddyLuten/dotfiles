@@ -19,3 +19,5 @@ alias entry='c "Entry" && gp'
 alias note='c "Notes for $(date -I)" && gp'
 alias xx='exit 0'
 alias apt-upgrade='sudo zsh -c "apt update && apt upgrade -y && apt autoremove && apt clean && snap refresh"'
+alias tt='ttyper'
+
