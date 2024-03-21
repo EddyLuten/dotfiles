@@ -19,7 +19,6 @@ sudo apt install -y\
   wget\
   git\
   zsh\
-  keychain\
   fonts-firacode\
   fonts-powerline\
   fonts-inconsolata\
@@ -38,8 +37,8 @@ sudo apt install -y\
   texlive\
   texlive-fonts-recommended\
   texlive-fonts-extra\
-  &&\
-sudo pip3 install thefuck
+
+pip3 install thefuck --user
 
 which upgrade_oh_my_zsh > /dev/null
 if [ $? -ne 0 ]; then

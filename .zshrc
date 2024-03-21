@@ -38,17 +38,21 @@ export LANG=en_US.UTF-8
 
 ##############################################################################
 # Default editor
-
-which vim > /dev/null
+which nvim > /dev/null
 if [ $? -ne 0 ]; then
-  which vi > /dev/null
-    if [ $? -ne 0 ]; then
-      echo 'vim/vi not installed!'
+  which vim > /dev/null
+  if [ $? -ne 0 ]; then
+    which vi > /dev/null
+      if [ $? -ne 0 ]; then
+        echo 'vim/vi not installed!'
+      else
+        export EDITOR='vi'
+      fi
     else
-      export EDITOR='vi'
-    fi
-  else
-    export EDITOR='vim'
+      export EDITOR='vim'
+  fi
+else
+  export EDITOR='nvim'
 fi
 
 ###############################################################################
@@ -72,15 +76,6 @@ if [ -f "$HOME/.ssh/id_rsa" ]; then
   export SSH_KEY_PATH="~/.ssh/rsa_id"
 else
   echo 'SSH keys not imported'
-fi
-
-which keychain > /dev/null
-if [ $? -eq 0 ]; then
-  # eval `keychain -q --eval --agents ssh id_rsa`
-  keychain $HOME/.ssh/id_rsa
-  source $HOME/.keychain/$HOST-sh
-else
-  echo 'keychain not installed!'
 fi
 
 ##############################################################################
@@ -164,14 +159,6 @@ fi
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 ###############################################################################
-# Enable password-store extensions
-
-which pass > /dev/null
-if [ $? -eq 0 ]; then
-  export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
-fi
-
-###############################################################################
 # thefuck/fuck
 
 which thefuck > /dev/null
@@ -201,5 +188,13 @@ export PATH="$PATH:$HOME/.nimble/bin"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+###############################################################################
+# Expand !! and immediately execute rather than verify and hit enter
+#
 unsetopt histverify
+
+###############################################################################
+# zoxide (replaces cd and adds cdi)
+#
+eval "$(zoxide init --cmd cd zsh)"
 
