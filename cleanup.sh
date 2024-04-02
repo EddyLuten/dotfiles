@@ -17,7 +17,6 @@ promptDelete gnome-sudoku 'Remove Sudoku?' gnome-sudoku
 promptDelete shotwell 'Remove Shotwell?' shotwell
 promptDelete rhythmbox 'Remove Rhythmbox?' rhythmbox
 promptDelete thunderbird 'Remove Thunderbird?' thunderbird
-promptDelete firefox 'Remove Firefox?' firefox
 
 if prompt 'Peform apt cleanup?'; then
 	sudo apt autoremove && sudo apt clean

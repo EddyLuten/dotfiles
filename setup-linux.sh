@@ -1,44 +1,106 @@
 #!/usr/bin/env bash
-
 source ./common.sh
-CODENAME="$(cat /etc/lsb-release | sed -E -n 's/DISTRIB_CODENAME=(.+)/\1/p')"
+source /etc/os-release
 
+# =============================================================================
+# VSCode
+sudo apt-get install wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-rm packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
 
+# =============================================================================
+# DOTNET (and other MS packages)
+wget https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+# =============================================================================
+# Typora
 wget -qO - https://typora.io/linux/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/typora.asc
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 
+# =============================================================================
+# InSync
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
+deb http://apt.insync.io/$ID $VERSION_CODENAME non-free contrib
+
+# =============================================================================
+# OBS
+sudo add-apt-repository ppa:obsproject/obs-studio
+
+# =============================================================================
+# Update apt and install packages
 sudo apt update && sudo apt upgrade -y && sudo apt install apt-transport-https -y
 
 sudo apt install -y\
-  neovim\
+  atop\
+  code\
   curl\
-  wget\
-  git\
-  zsh\
-  fonts-firacode\
-  fonts-powerline\
-  fonts-inconsolata\
-  fonts-dejavu\
+  dotnet-runtime-8.0\
+  dotnet-sdk-8.0\
+  ffmpeg\
+  firefox\
+  flameshot\
   fonts-dejavu-core\
   fonts-dejavu-extra\
-  pandoc\
+  fonts-dejavu\
+  fonts-firacode\
+  fonts-inconsolata\
+  fonts-powerline\
+  git\
+  glslang-dev\
+  glslang-tools\
   gnome-tweaks\
-  python3\
-  python3-pip\
-  python3-dev\
-  python3-setuptools\
+  insync\
   keepassxc\
-  code\
-  typora\
-  texlive\
-  texlive-fonts-recommended\
+  neovim\
+  obs-studio\
+  pandoc\
+  python3-dev\
+  python3-pip\
+  python3-setuptools\
+  python3\
   texlive-fonts-extra\
+  texlive-fonts-recommended\
+  texlive\
+  typora\
+  ubuntu-restricted-extras\
+  wget\
+  zsh\
+
+# =============================================================================
+# Crystal
+curl -fsSL https://crystal-lang.org/install.sh | sudo bash
+
+# =============================================================================
+# Snaps
+
+sudo snap install emacs --classic
+sudo snap install obsidian --classic
+sudo snap install blender --classic
+sudo snap install\
+  discord\
+  gimp\
+  krita\
+  spotify\
+
+# =============================================================================
+# Python packages
 
 pip3 install thefuck --user
+pip3 install install \
+  gnome-extensions-cli\
+  markdown-word-count\
+  mdx_truly_sane_lists\
+  mkdocs-alias-plugin\
+  mkdocs-awesome-pages-plugin\
+  mkdocs-categories-plugin\
+  mkdocs-live-edit-plugin\
+  mkdocs-material\
+  mkdocs\
+  neoteroi-mkdocs\
 
 which upgrade_oh_my_zsh > /dev/null
 if [ $? -ne 0 ]; then
@@ -58,19 +120,9 @@ if [ $? -ne 0 ]; then
     rm -f google-chrome-stable_current_amd64.deb
 fi
 
-which snap > /dev/null
-if [ $? -eq 0 ]; then
-  sudo snap install emacs --classic
-else
-  echo "Snap is not installed, installing..."
-  sudo apt install snapd
-  echo "Installed snap, reboot the system and rerun this script!"
-  exit
-fi
-
 which rustc > /dev/null
 if [ $? -ne 0 ]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl https://sh.rustup.rs -sSf | sh -s -- -y
 fi
 
 if prompt 'Link dotfiles now?'; then
@@ -87,6 +139,14 @@ fi
 
 if prompt 'Install Fonts?'; then
   ./fonts.sh
+fi
+
+if prompt 'Install gnome extensions?'; then
+  gext install appmenu-is-back@fthx
+  gext install tiling-assistant@leleat-on-github
+  gext install tophat@fflewddur.github.io
+  gext install emoji-copy@felipeftn
+  gext install caffeine@patapon.info
 fi
 
 if prompt 'Install middle-mouse paste blocking for Linux?'; then
