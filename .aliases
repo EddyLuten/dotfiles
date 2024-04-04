@@ -3,6 +3,10 @@
 ##############################################################################
 # Aliases that can be shared between BASH and ZSH
 
+# ls overrides
+alias ll='ls -lh'
+alias la='ls -lah'
+
 # Global git aliases
 alias g='git'
 alias gs='git status'
@@ -20,4 +24,7 @@ alias note='c "Notes for $(date -I)" && gp'
 alias xx='exit 0'
 alias apt-upgrade='sudo zsh -c "apt update && apt upgrade -y && apt autoremove && apt clean && snap refresh"'
 alias tt='ttyper'
+
+# Private aliases
+[[ -f "$HOME/.servers" ]] && source "$HOME/.servers"
 
