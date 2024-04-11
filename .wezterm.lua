@@ -28,6 +28,7 @@ config.default_cursor_style = 'BlinkingBlock'
 config.cursor_blink_ease_in = 'EaseIn'
 config.cursor_blink_ease_out = 'EaseOut'
 config.check_for_updates = false
+config.warn_about_missing_glyphs = false
 config.window_background_gradient = {
   orientation = 'Vertical',
 
@@ -35,8 +36,6 @@ config.window_background_gradient = {
     'rgba(59, 66, 82, 0.99)',
     'rgba(47, 48, 51, 0.95)'
   },
-
-  noise=500,
 
   interpolation = 'Linear',
 
@@ -47,4 +46,3 @@ config.color_scheme = 'Nord'
 
 -- and finally, return the configuration to wezterm
 return config
-

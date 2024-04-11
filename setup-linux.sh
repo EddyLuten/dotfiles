@@ -49,15 +49,22 @@ sudo apt install -y\
   fonts-firacode\
   fonts-inconsolata\
   fonts-powerline\
+  gcc\
   git\
   glslang-dev\
   glslang-tools\
   gnome-tweaks\
+  htop\
   insync\
   keepassxc\
+  libev-dev\
+  libx11-dev\
+  libxi-dev\
+  make\
   neovim\
   obs-studio\
   pandoc\
+  pkg-config\
   python3-dev\
   python3-pip\
   python3-setuptools\
@@ -151,13 +158,11 @@ fi
 
 if prompt 'Install middle-mouse paste blocking for Linux?'; then
   pushd .
-  sudo apt install libev-dev libx11-dev libxi-dev
-  cd ~ && git clone https://github.com/milaq/XMousePasteBlock.git
-  cd XmousePaseBlock
+  cd $HOME && git clone https://github.com/milaq/XMousePasteBlock.git
+  cd XMousePasteBlock
   make
   sudo make install
   popd
-  mkdir -p ~/.config/autostart
-  cp xmousepasteblock.desktop ~/.config/autostart
+  mkdir -p $HOME/.config/autostart
+  cp xmousepasteblock.desktop $HOME/.config/autostart
 fi
-
