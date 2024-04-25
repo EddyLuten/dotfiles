@@ -66,11 +66,12 @@
     "xmlTools.enableXmlTreeView": true,
     "xmlTools.enableXmlTreeViewMetadata": true,
     "xmlTools.enableXmlTreeViewCursorSync": true,
+    "python.defaultInterpreterPath": "python3",
     "editor.inlineSuggest.enabled": true,
     "[python]": {
         "editor.formatOnType": true
     },
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "Monokai Pro Icons",
     "explorer.confirmDelete": false,
     "workbench.colorTheme": "Monokai Pro",
     "typescript.updateImportsOnFileMove.enabled": "always",

@@ -22,13 +22,8 @@ wget -qO - https://typora.io/linux/public-key.asc | sudo tee /etc/apt/trusted.gp
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 
 # =============================================================================
-# InSync
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-deb http://apt.insync.io/$ID $VERSION_CODENAME non-free contrib
-
-# =============================================================================
 # OBS
-sudo add-apt-repository ppa:obsproject/obs-studio
+# sudo add-apt-repository ppa:obsproject/obs-studio
 
 # =============================================================================
 # Update apt and install packages
@@ -55,15 +50,14 @@ sudo apt install -y\
   glslang-tools\
   gnome-tweaks\
   htop\
-  insync\
   keepassxc\
   libev-dev\
   libx11-dev\
   libxi-dev\
   make\
   neovim\
-  obs-studio\
   pandoc\
+  pipx\
   pkg-config\
   python3-dev\
   python3-pip\
@@ -96,8 +90,7 @@ sudo snap install\
 # =============================================================================
 # Python packages
 
-pip3 install thefuck --user
-pip3 install install \
+pipx install \
   gnome-extensions-cli\
   markdown-word-count\
   mdx_truly_sane_lists\
@@ -108,6 +101,16 @@ pip3 install install \
   mkdocs-material\
   mkdocs\
   neoteroi-mkdocs\
+
+# =============================================================================
+# zoxide
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
+# =============================================================================
+# wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update && sudo apt install wezterm
 
 which upgrade_oh_my_zsh > /dev/null
 if [ $? -ne 0 ]; then
@@ -149,11 +152,10 @@ if prompt 'Install Fonts?'; then
 fi
 
 if prompt 'Install gnome extensions?'; then
-  gext install appmenu-is-back@fthx
-  gext install tiling-assistant@leleat-on-github
-  gext install tophat@fflewddur.github.io
-  gext install emoji-copy@felipeftn
-  gext install caffeine@patapon.info
+  gext install tiling-assistant@leleat-on-github && gext enable tiling-assistant@leleat-on-github
+  gext install tophat@fflewddur.github.io && gext enable tophat@fflewddur.github.io
+  gext install emoji-copy@felipeftn && gext enable emoji-copy@felipeftn
+  gext install caffeine@patapon.info && gext enable caffeine@patapon.info
 fi
 
 if prompt 'Install middle-mouse paste blocking for Linux?'; then
