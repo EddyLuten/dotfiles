@@ -14,7 +14,7 @@
     "editor.selectionClipboard": false,
     "[markdown]": {
         "editor.wordWrap": "bounded",
-        "editor.wordWrapColumn": 80,
+        "editor.wordWrapColumn": 100,
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "open-in-browser.default": "firefox",
@@ -109,4 +109,8 @@
     },
     "cmake.showOptionsMovedNotification": false,
     "explorer.confirmDragAndDrop": false,
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.defaultDateLocale": null,
+    "gitlens.defaultDateFormat": "YYYY-MM-DDTHH:mm",
+    "gitlens.defaultDateShortFormat": null,
 }
