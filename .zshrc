@@ -196,5 +196,7 @@ unsetopt histverify
 ###############################################################################
 # zoxide (replaces cd and adds cdi)
 #
-eval "$(zoxide init --cmd cd zsh)"
-
+which zoxide > /dev/null
+if [ $? -eq 0 ]; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
