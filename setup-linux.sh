@@ -12,9 +12,10 @@ rm -f packages.microsoft.gpg
 
 # =============================================================================
 # DOTNET (and other MS packages)
-wget https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
+# wget https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+# sudo dpkg -i packages-microsoft-prod.deb
+# rm packages-microsoft-prod.deb
+# no longer needed post ubuntu 24
 
 # =============================================================================
 # Typora

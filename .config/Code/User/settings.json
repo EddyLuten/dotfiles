@@ -114,4 +114,5 @@
     "gitlens.defaultDateLocale": null,
     "gitlens.defaultDateFormat": "YYYY-MM-DDTHH:mm",
     "gitlens.defaultDateShortFormat": null,
+    "security.workspace.trust.untrustedFiles": "open",
 }
