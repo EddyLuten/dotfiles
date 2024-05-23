@@ -19,6 +19,7 @@ plugins=(
   git
   zsh-syntax-highlighting
   aws
+  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -38,11 +39,11 @@ export LANG=en_US.UTF-8
 
 ##############################################################################
 # Default editor
-which nvim > /dev/null
+command -v nvim &> /dev/null
 if [ $? -ne 0 ]; then
-  which vim > /dev/null
+  command -v vim &> /dev/null
   if [ $? -ne 0 ]; then
-    which vi > /dev/null
+    command -v vi &> /dev/null
       if [ $? -ne 0 ]; then
         echo 'vim/vi not installed!'
       else
@@ -81,7 +82,7 @@ fi
 ##############################################################################
 # GIT
 
-which git > /dev/null
+command -v git &> /dev/null
 if [ $? -eq 0 ]; then
   git config --global user.name "Eddy Luten"
   git config --global user.email "eddyluten@gmail.com"
@@ -105,7 +106,7 @@ fi
 ###############################################################################
 # SVN
 
-which svn > /dev/null
+command -v svn &> /dev/null
 if [ $? -eq 0 ]; then
   # equivalent-esque of 'git add .'
   svn-apply() {
@@ -161,7 +162,7 @@ fi
 ###############################################################################
 # thefuck/fuck
 
-which thefuck > /dev/null
+command -v thefuck &> /dev/null
 if [ $? -eq 0 ]; then
   eval $(thefuck --alias)
   alias fuck='fuck --yeah'
@@ -196,7 +197,7 @@ unsetopt histverify
 ###############################################################################
 # zoxide (replaces cd and adds cdi)
 #
-which zoxide > /dev/null
+command -v zoxide &> /dev/null
 if [ $? -eq 0 ]; then
   eval "$(zoxide init --cmd cd zsh)"
 fi
