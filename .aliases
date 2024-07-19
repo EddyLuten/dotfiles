@@ -13,6 +13,7 @@ alias gs='git status'
 alias gsa='git add .'
 alias sup='svn up'
 alias c='f(){gsa && git commit -m "$1"};f'
+alias gcos='gco staging'
 
 # replace vim with nvim
 alias vim="nvim"

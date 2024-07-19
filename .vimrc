@@ -12,6 +12,7 @@ set relativenumber
 " Enables displaying whitespace
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 set list
+set mouse=
 
 " Visual column indication
 highlight ColorColumn ctermbg=DarkGrey
